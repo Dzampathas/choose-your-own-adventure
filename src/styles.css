@@ -1,8 +1,92 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  background-color: rgb(80, 80, 100);
+  width: 75vw;
+  height: 75vh;
+  margin: auto;
+  transform: translatey(10vh);
+  border-radius: 20px;
+  padding: 3vh;
+  transition: .5s;
+  box-shadow: 0px 0px 20px 5px black;
+}
+
+.App:hover {
+  width: 76vw;
+  height: 76vh;
+  transform: translatey(8.5vh);
+}
+
+body{
+   background-color: rgb(255, 255, 255);
+   transition: .5s;
 }
 
 .main-page-image {
   max-width: 400px;
+  transition: .5s;
+}
+
+.text {
+  font-size: 20pt;
+  font-family: Arial Black, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  transition: .5s;
+  background: rgb(110, 110, 130);
+  padding: 10px;
+  border-radius: 10px;
+  width:90%;
+  margin: auto;
+}
+
+.textInput {
+  width: 90%;
+  height: 50px;
+  font-size: 30pt;
+  background: rgb(230, 230, 230);
+  border: none;
+  transition: .5s;
+  bottom: 10vh;
+  right: 5%;
+  color: black;
+  position: absolute;
+  text-align: center;
+  font-family: Arial Black, Helvetica, sans-serif;
+  border-radius: 20px;
+}
+
+.textInput:hover {
+  background: rgb(230, 230, 230);
+  transition: .5s;
+}
+
+.textInput:focus {
+  background: rgb(255, 255, 255);
+  transition: .5s;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+}
+
+.button {
+  height: 6vh;
+  flex-grow: 1;
+  transition: .5s;
+}
+.button:hover {
+  background-color: lightblue;
+  border: none;
+}
+
+.buttons {
+  display: flex;
+  position: absolute;
+  bottom: 2vh;
+  width: 80%;
+  align-items: stretch;
+  justify-content: center;
+  left: 8vw;
+  overflow: hidden;
+  border-radius: 10px;
 }

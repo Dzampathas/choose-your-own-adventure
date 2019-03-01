@@ -7,7 +7,7 @@
   "dependencies": {
     "react": "16.8.0",
     "react-dom": "16.8.0",
-    "react-scripts": "2.0.3"
+    "react-scripts": "^2.1.5"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,5 +16,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -1,42 +1,24 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { pageInfo } from './pages.js';
 
 import "./styles.css";
 
-var pages = {
-  start: {
-    content:
-      "Welcome, traveler! How would you like to get to your destination?",
-    label1: "Train",
-    label2: "Ship",
-    page1: "onthetrain",
-    page2: "ontheship"
-  },
-  onthetrain: {
-    content:
-      "Welcome aboard the choo-choo train! Please make your way to your seat. What's the number?",
-    image: "train.png",
-    input: {
-      type: "select",
-      values: ["", "12A", "12B", "12C", "11A", "11B", "11C"],
-      saveKey: "seat"
-    },
-    label1: "Next",
-    page1: "next-stop-soweto"
-  },
-  ontheship: {
-    content: "Welcome abord, sir! What is your destination?",
-    input: {
-      type: "text",
-      saveKey: "destination"
-    },
-    label1: "Next",
-    page1: "titanic"
-  }
-};
+//Information for the pages to be displayed
+//Each page is an object
+//Contains:
+//  Links to pages
+//  Content
+//  Input
+//    select
+//    text
+//  Values
+//  Lables
+//The page rendering stuff
 
 class Page extends Component {
   render() {
+    var pages = pageInfo(this.props.userData);
     var pageData = pages[this.props.pageName];
     if (!pageData) {
       throw new Error("Eek! No page here!");
@@ -45,6 +27,7 @@ class Page extends Component {
     var goToPage = this.props.goToPage;
     var saveUserData = this.props.saveUserData;
 
+    // Go to page
     function goToPage1() {
       goToPage(pageData.page1);
     }
@@ -55,6 +38,7 @@ class Page extends Component {
       saveUserData(pageData.input.saveKey, event.target.value);
     }
 
+    // setting up the image data for each page..
     var image = "";
     if (pageData.image) {
       image = (
@@ -63,18 +47,24 @@ class Page extends Component {
         </div>
       );
     }
+
+    // creating a button per page info.
+    // Button 1
     var button1 = "";
     if (pageData.page1) {
-      button1 = <button onClick={goToPage1}>{pageData.label1}</button>;
+      button1 = <button onClick={goToPage1} className="button">{pageData.label1}</button>;
     }
+    // Button 2
     var button2 = "";
     if (pageData.page2) {
-      button2 = <button onClick={goToPage2}>{pageData.label2}</button>;
+      button2 = <button onClick={goToPage2} className="button">{pageData.label2}</button>;
     }
+    // Input data
     var input = "";
     if (pageData.input) {
       var inputData = pageData.input;
-      if (inputData.type == "select") {
+      // Creating a selection input
+      if (inputData.type === "select") {
         input = (
           <p>
             <select
@@ -87,10 +77,12 @@ class Page extends Component {
             </select>
           </p>
         );
-      } else if (inputData.type == "text") {
+      //creating a text input 
+      } else if (inputData.type === "text") {
         input = (
           <p>
             <input
+              className="textInput"
               type="text"
               value={this.props.userData[inputData.saveKey]}
               onChange={handleChange}
@@ -99,19 +91,23 @@ class Page extends Component {
         );
       }
     }
-
+    //end input info..
+    //Rendering the page information
     return (
       <div>
-        <p>{pageData.content}</p>
+        <p className="text">{pageData.content}</p>
         {input}
         {image}
-        {button1}
-        {button2}
+        <div className="buttons">
+          {button1}
+          {button2}
+        </div>
       </div>
     );
   }
 }
 
+//Main app
 class App extends Component {
   constructor(props) {
     super(props);
@@ -138,7 +134,8 @@ class App extends Component {
     }
     this.setState(updateState);
   }
-
+  //Rendering the main app and passing the data into the page object.
+  //Wahoo
   render() {
     return (
       <div className="App">
